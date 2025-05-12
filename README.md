@@ -1,72 +1,75 @@
-# Automated-Data-Query-and-Retrieval-System
-Using Offline LLM, MongoDB, LangChain, LlamaIndex &amp; CSV
+# Automated Data Query and Retrieval System
 
-Overview:
+## Overview
 
-This project demonstrates an automated system to query and retrieve data from a CSV file loaded into MongoDB, using open-source/offline Large Language Models (LLMs). It dynamically generates MongoDB queries based on natural language inputs.
+This project implements an automated data query and retrieval system using Offline LLM, MongoDB, and CSV data processing. It leverages the Mistral-7B-Instruct model for natural language query generation and executes predefined test cases to generate query results, which are saved as CSV files.
 
- Project Structure
- 
-├── main_script.py                # Main Python script to run the entire workflow
+## Prerequisites
 
-├── sample_data.csv              # Input CSV file (product data)
+* Python 3.10 or higher
+* MongoDB installed and running locally
+* Required Python Libraries:
 
-├── test_case1.csv               # Output for test case 1
+  * pandas
+  * pymongo
+  * transformers
+  * warnings
 
-├── test_case2.csv               # Output for test case 2
+## Setup and Installation
 
-├── test_case3.csv               # Output for test case 3
+1. **Clone the Repository:**
 
-├── Queries_generated.txt        # LLM-generated MongoDB queries for each test case
+   ```bash
+   git clone [repository-url]
+   cd [repository-directory]
+   ```
 
-└── README.md                    # Documentation
+2. **Install Dependencies:**
 
-Installation & Setup:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-1. Clone the Repository
-git clone <your-repo-url>
-cd <your-repo-folder>
-2. Create and Activate a Virtual Environment (Optional but Recommended)
-pip install -r requirements.txt
-Or manually install:
-pip install pymongo pandas langchain llama-index
+3. **Start MongoDB:**
+   Ensure that MongoDB is running locally on the default port `27017`.
 
-Usage Instructions:
+   ```bash
+   mongod
+   ```
 
-1. Run the Script
-python main_script.py
+4. **Data Preparation:**
 
-2. You Will Be Prompted To:
-Enter a natural language query (e.g., "Show products with rating < 4.5 and reviews > 200 by Nike or Sony.")
-Choose to display results in the console or export to CSV.
+   * Place the `sample_data.csv` file in the project directory.
 
-Test Cases Implemented:
+## Execution
 
-✅ Test Case 1
+1. **Run the Script:**
 
-Query: Products with a rating < 4.5, > 200 reviews, by Nike or Sony
+   ```bash
+   python main_script.py
+   ```
 
-Output: test_case1.csv
+2. **Generated Output:**
 
-✅ Test Case 2
+   * `test_case1.csv`: Results for products with a rating below 4.5 and more than 200 reviews, from 'Nike' or 'Sony'.
+   * `test_case2.csv`: Results for products in the 'Electronics' category with a rating of 4.5 or higher and in stock.
+   * `test_case3.csv`: Results for products launched after January 1, 2022, in 'Home & Kitchen' or 'Sports' categories, with a discount of 10% or more, sorted by price.
 
-Query: Electronics category, rating ≥ 4.5, in stock
+3. **Query Logs:**
 
-Output: test_case2.csv
+   * The generated queries are logged in the `Queries_generated.txt` file.
 
-✅ Test Case 3
+## Troubleshooting
 
-Query: Launched after Jan 1, 2022, Home & Kitchen or Sports, discount ≥ 10%, sorted by price
+* Ensure MongoDB is running before executing the script.
+* Verify that the model `mistralai/Mistral-7B-Instruct-v0.1` is accessible and properly loaded.
 
-Output: test_case3.csv
+## Future Improvements
 
-Notes:
+* Implement dynamic query generation using user inputs.
+* Integrate more comprehensive data processing and filtering.
+* Enhance logging and error handling for better traceability.
 
-If MongoDB is not running or the CSV format is invalid, the script will raise a user-friendly error.
-
-You can update sample_data.csv with your own data.
-
-Queries are generated using a simple offline logic mimicking LLM behavior (custom rules / LangChain-style prompt chains can be integrated).
 
 
 
