@@ -1,0 +1,26 @@
+Test Case 1:
+Question: Find all products with a rating below 4.5 that have more than 200 reviews and are offered by the brand 'Nike' or 'Sony'.
+MongoDB Query:
+db.collection.find({
+  "Rating": { "$lt": 4.5 },
+  "Reviews": { "$gt": 200 },
+  "Brand": { "$in": ["Nike", "Sony"] }
+})
+
+Test Case 2:
+Question: Which products in the Electronics category have a rating of 4.5 or higher and are in stock?
+MongoDB Query:
+db.collection.find({
+  "Category": "Electronics",
+  "Rating": { "$gte": 4.5 },
+  "Stock": true
+})
+
+Test Case 3:
+Question: List products launched after January 1, 2022, in the Home & Kitchen or Sports categories with a discount of 10% or more, sorted by price in descending order.
+MongoDB Query:
+db.collection.find({
+  "LaunchDate": { "$gt": ISODate("2022-01-01T00:00:00Z") },
+  "Category": { "$in": ["Home & Kitchen", "Sports"] },
+  "Discount": { "$gte": 10 }
+}).sort({ "Price": -1 })
